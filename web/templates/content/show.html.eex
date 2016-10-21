@@ -1,0 +1,23 @@
+<h2>Show content</h2>
+
+<ul>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @content.description %>
+  </li>
+
+  <li>
+    <strong>Type:</strong>
+    <%= @content.type %>
+  </li>
+
+  <li>
+    <strong>Data:</strong>
+    <%= @content.data %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: content_path(@conn, :edit, @content) %>
+<%= link "Back", to: content_path(@conn, :index) %>

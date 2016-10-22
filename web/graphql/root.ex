@@ -1,31 +1,7 @@
 defmodule GraphQL.Schema.Root do
   alias GraphQL.Schema
-  alias GraphQL.Schema.{Root}
-  alias GraphQL.Type.{ObjectType, String, List, ID}
-  alias BroadcastLove.{Repo}
-
-  defmodule Content do
-    def type do
-      %ObjectType{
-        name: "Content",
-        description: "a content object",
-        fields: %{
-          id: %{type: %String{}},
-          description: %{type: %String{}},
-          type: %{type: %String{}},
-          data: %{type: %String{}}
-        }
-      }
-    end
-
-    def find(_, %{id: id}, _) do
-      Repo.get(BroadcastLove.Content, id)
-    end
-
-    def find(_, _, _) do
-      Repo.all(BroadcastLove.Content)
-    end
-  end
+  alias GraphQL.Type.{ObjectType, List, ID}
+  alias GraphQL.Schema.Content
 
   defmodule Query do
     def type do

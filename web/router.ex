@@ -12,7 +12,7 @@ defmodule BroadcastLove.Router do
   pipeline :api do
     plug :accepts, ["json"]
 
-    forward "/", GraphQL.Plug, schema: {
+    forward "/api", GraphQL.Plug, schema: {
       GraphQL.Schema.Root,
       :schema
     }

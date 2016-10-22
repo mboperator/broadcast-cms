@@ -1,8 +1,8 @@
 defmodule GraphQL.Schema.Root do
   alias GraphQL.Schema
   alias GraphQL.Schema.{Root}
-  alias GraphQL.Type.{ObjectType, String, List}
-  alias BroadcastLove.{Repo, Content}
+  alias GraphQL.Type.{ObjectType, String, List, ID}
+  alias BroadcastLove.{Repo}
 
   defmodule Content do
     def type do
@@ -18,12 +18,12 @@ defmodule GraphQL.Schema.Root do
       }
     end
 
-    def find(%{content_id: id}, _, _) do
-      Repo.get(Content, id)
+    def find(_, %{id: id}, _) do
+      Repo.get(BroadcastLove.Content, id)
     end
 
-    def find_all(_, _, _) do
-      Repo.all(Content)
+    def find(_, _, _) do
+      Repo.all(BroadcastLove.Content)
     end
   end
 
@@ -35,10 +35,11 @@ defmodule GraphQL.Schema.Root do
         fields: %{
           content: %{
             type: %List{ofType: Content},
+            args: %{
+              id: %{type: %ID{}},
+            },
             description: "A piece of uploaded content",
-            resolve: fn
-              _, _, _ -> for id <- 1..4, do: Root.make_content(id)
-            end
+            resolve: &Content.find/3
           }
         }
       }

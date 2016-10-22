@@ -11,6 +11,11 @@ defmodule BroadcastLove.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+
+    forward "/api", GraphQL.Plug, schema: {
+      BroadcastLove.GraphQL.Root,
+      :schema
+    }
   end
 
   scope "/", BroadcastLove do
@@ -22,7 +27,7 @@ defmodule BroadcastLove.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", BroadcastLove do
-  #   pipe_through :api
-  # end
+  scope "/api", BroadcastLove do
+    pipe_through :api
+  end
 end

@@ -27,13 +27,4 @@ defmodule GraphQL.Schema.Root do
       query: Query
     }
   end
-
-  def make_content(id) do
-    %{
-      id: "#{id}",
-      description: "Hello",
-      type: "image",
-      data: "some/image/url"
-    }
-  end
 end

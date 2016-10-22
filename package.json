@@ -11,9 +11,12 @@
   },
   "devDependencies": {
     "babel-brunch": "~6.0.0",
+    "babel-eslint": "^7.0.0",
     "brunch": "2.7.4",
     "clean-css-brunch": "~2.0.0",
     "css-brunch": "~2.0.0",
+    "eslint": "^3.8.1",
+    "eslint-plugin-react": "^6.4.1",
     "javascript-brunch": "~2.0.0",
     "uglify-js-brunch": "~2.0.1"
   }

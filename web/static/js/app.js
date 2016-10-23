@@ -6,12 +6,15 @@ import '../../../deps/phoenix_html/priv/static/phoenix_html';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
-class Root extends Component {
+class BroadcastLove extends Component {
   render() {
     return (
-      <h1>omg so hot</h1>
+      <section>
+        <h1>broadcast.love</h1>
+        <h2>worldwide</h2>
+      </section>
     );
   }
 }
 
-render(<Root />, document.getElementById('root'));
+render(<BroadcastLove />, document.getElementById('root'));

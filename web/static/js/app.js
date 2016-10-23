@@ -11,7 +11,6 @@ class BroadcastLove extends Component {
     return (
       <section>
         <h1>broadcast.love</h1>
-        <h2>worldwide</h2>
       </section>
     );
   }

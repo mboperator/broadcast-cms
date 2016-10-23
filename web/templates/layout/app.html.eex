@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="A platform for sharing stories.">
+    <meta name="author" content="Marcus Bernales">
 
-    <title>Hello BroadcastLove!</title>
+    <title>broadcast.love | worldwide</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
@@ -25,11 +25,12 @@
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
-      <main role="main">
+      <main role="main" id="root">
         <%= render @view_module, @view_template, assigns %>
       </main>
 
     </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <script src="http://localhost:4001/build/app.hot.js"></script>
   </body>
 </html>

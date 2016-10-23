@@ -21,6 +21,7 @@ defmodule BroadcastLove.Router do
   scope "/", BroadcastLove do
     pipe_through :browser # Use the default browser stack
 
+    get "/", PageController, :index
     resources "/pages", PageController
     resources "/contents", ContentController
     resources "/tags", TagController

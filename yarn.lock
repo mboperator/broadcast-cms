@@ -1079,6 +1079,10 @@ circular-json@^0.3.0:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/circular-json/-/circular-json-0.3.1.tgz#be8b36aefccde8b3ca7aa2d6afc07a37242c0d2d"
 
+classnames@^2.2.3:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
+
 cli-cursor@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/cli-cursor/-/cli-cursor-1.0.2.tgz#64da3f7d56a54412e59794bd62dc35295e8f2987"
@@ -2789,6 +2793,10 @@ react:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
 
+react-addons-pure-render-mixin@^15.3.1:
+  version "15.3.2"
+  resolved "https://registry.yarnpkg.com/react-addons-pure-render-mixin/-/react-addons-pure-render-mixin-15.3.2.tgz#c5f54764667ead26e6cdf7178b6c8dbbd8463ec2"
+
 react-dom:
   version "15.3.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.3.2.tgz#c46b0aa5380d7b838e7a59c4a7beff2ed315531f"
@@ -2856,6 +2864,14 @@ readline2@^1.0.1:
     code-point-at "^1.0.0"
     is-fullwidth-code-point "^1.0.0"
     mute-stream "0.0.5"
+
+rebass:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/rebass/-/rebass-0.3.3.tgz#bfffddf219107b07be2133173bab9b9887098173"
+  dependencies:
+    classnames "^2.2.3"
+    object-assign "^4.0.1"
+    react-addons-pure-render-mixin "^15.3.1"
 
 redent@^1.0.0:
   version "1.0.0"

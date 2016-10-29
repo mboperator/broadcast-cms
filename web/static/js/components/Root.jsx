@@ -2,15 +2,21 @@ import React, {PropTypes} from 'react';
 import { config } from 'rebass';
 
 class Root extends React.Component {
-  getChildContext () {
+  state = {
+    style: {
+      ...config,
+      fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',
+    },
+  }
+  getChildContext() {
     return {
-      rebass: config,
+      rebass: this.state.style,
     };
   }
 
-  render () {
+  render() {
     return (
-      <div>
+      <div style={this.state.style}>
         {this.props.children}
       </div>
     );

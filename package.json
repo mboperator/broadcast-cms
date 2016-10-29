@@ -6,11 +6,16 @@
     "watch": "brunch watch --stdin"
   },
   "dependencies": {
+    "apollo-client": "^0.5.0",
+    "graphql-tag": "^0.1.15",
     "phoenix": "file:deps/phoenix",
     "phoenix_html": "file:deps/phoenix_html",
     "react": "^15.3.2",
+    "react-apollo": "^0.5.14",
     "react-dom": "^15.3.2",
-    "rebass": "^0.3.3"
+    "rebass": "^0.3.3",
+    "redux": "^3.6.0",
+    "redux-modules": "^0.6.5"
   },
   "devDependencies": {
     "babel-cli": "^6.16.0",

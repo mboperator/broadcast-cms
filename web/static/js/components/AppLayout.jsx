@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import { config } from 'rebass';
 
 class Root extends React.Component {

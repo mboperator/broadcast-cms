@@ -3,18 +3,19 @@ import { graphql } from 'react-apollo';
 import { compose, mapProps } from 'recompose';
 import ContentFeed from '../components/ContentFeed';
 
-const contentQuery = gql`{
-	content {
-	  id,
-    description,
-    type,
-    data
-	}
-}
-`;
-const withContents = graphql(contentQuery);
+const withContents = graphql(
+  gql`{
+  	content {
+  	  id,
+      description,
+      type,
+      data
+  	}
+  }
+  `
+);
 
 export default compose(
   withContents,
-  mapProps(({ data: { content } }) => ({ content })),
+  mapProps(({ data: { content = [] } }) => ({ content })),
 )(ContentFeed);

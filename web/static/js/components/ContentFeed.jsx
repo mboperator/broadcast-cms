@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { Text, Card, CardImage } from 'rebass';
 import { setPropTypes } from 'recompose';
 
-const ContentFeed = ({ content = [] }) => (
+const ContentFeed = ({ content }) => (
   <div>
     {content.map(({
       description,

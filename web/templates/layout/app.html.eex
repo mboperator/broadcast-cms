@@ -6,9 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A platform for sharing stories.">
     <meta name="author" content="Marcus Bernales">
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,600|Roboto+Mono:400|Karla:400,700' rel='stylesheet'>
-
     <title>broadcast.love | worldwide</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,600|Roboto+Mono:400|Karla:400,700' rel='stylesheet'>
+    <style>
+      .react-layout-components--box {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+      }
+    </style>
   </head>
 
   <body>

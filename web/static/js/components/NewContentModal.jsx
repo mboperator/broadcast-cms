@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
-import { createModule, connectModule } from 'redux-modules';
+import { createModule } from 'redux-modules';
+import localModule from '../utils/localModule';
 import { ButtonCircle, Panel, PanelHeader, Overlay } from 'rebass';
-import { compose, withReducer, setPropTypes } from 'recompose';
+import { compose, setPropTypes } from 'recompose';
 
 const NewContentModal = ({ actions, modal = {} }) => (
   <div>
@@ -30,13 +31,7 @@ const module = createModule({
 });
 
 export default compose(
-  withReducer(
-    'modal',
-    'dispatch',
-    module.reducer,
-    { open: true },
-  ),
-  connectModule(module),
+  localModule(module),
   setPropTypes({
     actions: PropTypes.shape({
       open: PropTypes.func.isRequired,

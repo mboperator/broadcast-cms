@@ -4,8 +4,10 @@ import { ButtonCircle, Panel, PanelHeader, Overlay } from 'rebass';
 import { compose, withReducer, setPropTypes } from 'recompose';
 
 const NewContentModal = ({ actions, modal = {} }) => (
-  <ButtonCircle onClick={actions.open}>
-    Add
+  <div>
+    <ButtonCircle onClick={actions.open}>
+      Add
+    </ButtonCircle>
     <Overlay
       open={modal.open}
       onDismiss={actions.close}
@@ -16,7 +18,7 @@ const NewContentModal = ({ actions, modal = {} }) => (
         </PanelHeader>
       </Panel>
     </Overlay>
-  </ButtonCircle>
+  </div>
 );
 
 const module = createModule({
@@ -32,7 +34,7 @@ export default compose(
     'modal',
     'dispatch',
     module.reducer,
-    { open: false },
+    { open: true },
   ),
   connectModule(module),
   setPropTypes({

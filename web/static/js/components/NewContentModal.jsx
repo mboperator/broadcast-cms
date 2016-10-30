@@ -24,6 +24,7 @@ const NewContentModal = ({ actions, modal = {} }) => (
 
 const module = createModule({
   name: 'modal',
+  initialState: { open: false },
   transformations: {
     open: state => ({ ... state, open: true }),
     close: state => ({ ... state, open: false }),

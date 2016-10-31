@@ -51,7 +51,7 @@ const NewContentModal = ({ actions, modal = {} }) => (
             </Button>
           </Box>
           <Box flex={4}>
-            <a onClick={actions.close}>
+            <a href="#" onClick={actions.close}>
               Cancel
             </a>
           </Box>

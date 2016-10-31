@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react';
 import { createModule } from 'redux-modules';
 import localModule from '../utils/localModule';
 import { compose, setPropTypes } from 'recompose';
+import { Box } from 'react-layout-components';
+
 import {
   Button,
   ButtonCircle,
@@ -43,12 +45,16 @@ const NewContentModal = ({ actions, modal = {} }) => (
           />
         </div>
         <PanelFooter>
-          <Button>
-            Submit
-          </Button>
-          <a>
-            Cancel
-          </a>
+          <Box flex={2}>
+            <Button>
+              Submit
+            </Button>
+          </Box>
+          <Box flex={4}>
+            <a onClick={actions.close}>
+              Cancel
+            </a>
+          </Box>
         </PanelFooter>
       </Panel>
     </Overlay>

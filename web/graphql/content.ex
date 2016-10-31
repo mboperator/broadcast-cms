@@ -1,7 +1,7 @@
 defmodule BroadcastLove.GraphQL.Content do
   alias BroadcastLove.{Repo, Content}
   alias GraphQL.Relay.{Connection, Node, Mutation}
-  alias GraphQL.Type.{ObjectType, String, List, NonNull}
+  alias GraphQL.Type.{ObjectType, String, List, NonNull, Boolean, ID}
 
   def connection do
     %{
@@ -19,7 +19,8 @@ defmodule BroadcastLove.GraphQL.Content do
       name: "Content",
       description: "a content object",
       fields: %{
-        id: Node.global_id_field("content"),
+        gid: Node.global_id_field("content"),
+        id: %{type: %ID{}},
         description: %{type: %String{}},
         type: %{type: %String{}},
         data: %{type: %String{}}
@@ -40,12 +41,17 @@ defmodule BroadcastLove.GraphQL.Content do
     Repo.all(Content)
   end
 
-
   def create(params) do
     case %Content{} |> Content.changeset(params) |> Repo.insert do
       {:ok, content} -> content
       {:error, changeset} -> changeset
     end
+  end
+
+  def destroy(id) do
+    content = Repo.get(Content, id)
+    Repo.delete!(content)
+    %{id: id}
   end
 
   defmodule Queries do
@@ -61,6 +67,7 @@ defmodule BroadcastLove.GraphQL.Content do
 
   defmodule Mutations do
     alias BroadcastLove.GraphQL.Content
+
     def create do
       %{
         name: "CreateContent",
@@ -77,6 +84,28 @@ defmodule BroadcastLove.GraphQL.Content do
           content: %{
             type: Content.type,
             resolve: &Content.find/3
+          }
+        }
+      } |> Mutation.new
+    end
+
+    def destroy do
+      %{
+        name: "DestroyContent",
+        input_fields: %{
+          id: %{type: %NonNull{ofType: %ID{}}}
+        },
+        mutate_and_get_payload: fn(input, _info) ->
+          Content.destroy(input[:id])
+        end,
+        output_fields: %{
+          deleted: %{
+            type: %Boolean{},
+            resolve: fn(_, _, _) -> true end
+          },
+          id: %{
+            type: %ID{},
+            resolve: fn(%{id: id}, _, _) -> id end
           }
         }
       } |> Mutation.new

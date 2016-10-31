@@ -39,7 +39,8 @@ defmodule BroadcastLove.GraphQL.Schema.Root do
       name: "Mutation",
       description: "Root object for performing data mutations",
       fields: %{
-        createContent: Content.Mutations.create
+        createContent: Content.Mutations.create,
+        destroyContent: Content.Mutations.destroy,
       }
     }
   end

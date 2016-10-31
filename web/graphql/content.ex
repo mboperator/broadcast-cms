@@ -1,7 +1,7 @@
 defmodule BroadcastLove.GraphQL.Content do
   alias BroadcastLove.{Repo}
   alias GraphQL.Relay.{Connection, Node}
-  alias GraphQL.Type.{ObjectType, String, List, Int}
+  alias GraphQL.Type.{ObjectType, String, List}
 
   def connection do
     %{

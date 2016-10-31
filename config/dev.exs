@@ -11,9 +11,8 @@ config :broadcast_love, BroadcastLove.Endpoint,
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
-  # watchers: [node: ["webpack.server.js"],
-  #            mix: ["eye_drops"]]
-  watchers: [mix: ["eye_drops"]]
+  watchers: [node: ["webpack.server.js"],
+             mix: ["eye_drops"]]
 
 
 # Watch static and templates for browser reloading.

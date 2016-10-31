@@ -1,8 +1,17 @@
 import React, { PropTypes } from 'react';
 import { createModule } from 'redux-modules';
 import localModule from '../utils/localModule';
-import { ButtonCircle, Panel, PanelHeader, Overlay } from 'rebass';
 import { compose, setPropTypes } from 'recompose';
+import {
+  Button,
+  ButtonCircle,
+  Panel,
+  PanelHeader,
+  Overlay,
+  Input,
+  Textarea,
+  PanelFooter,
+} from 'rebass';
 
 const NewContentModal = ({ actions, modal = {} }) => (
   <div>
@@ -17,6 +26,30 @@ const NewContentModal = ({ actions, modal = {} }) => (
         <PanelHeader>
           Add Content
         </PanelHeader>
+        <div>
+          <Input
+            label="Description"
+            name="description_input"
+            placeholder="Enter a description..."
+            rounded
+            type="text"
+          />
+          <Textarea
+            label="Data"
+            name="data_input"
+            placeholder="Enter a description..."
+            rounded
+            type="text"
+          />
+        </div>
+        <PanelFooter>
+          <Button>
+            Submit
+          </Button>
+          <a>
+            Cancel
+          </a>
+        </PanelFooter>
       </Panel>
     </Overlay>
   </div>

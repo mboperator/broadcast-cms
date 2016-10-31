@@ -1,7 +1,7 @@
 defmodule BroadcastLove.GraphQL.Content do
-  alias BroadcastLove.{Repo}
-  alias GraphQL.Relay.{Connection, Node}
-  alias GraphQL.Type.{ObjectType, String, List}
+  alias BroadcastLove.{Repo, Content}
+  alias GraphQL.Relay.{Connection, Node, Mutation}
+  alias GraphQL.Type.{ObjectType, String, List, NonNull}
 
   def connection do
     %{
@@ -29,11 +29,23 @@ defmodule BroadcastLove.GraphQL.Content do
   end
 
   def find(id) do
-    Repo.get(BroadcastLove.Content, id)
+    Repo.get(Content, id)
+  end
+
+  def find(%{id: id}, _, _) do
+    find(id)
   end
 
   def find(_, _, _) do
-    Repo.all(BroadcastLove.Content)
+    Repo.all(Content)
+  end
+
+
+  def create(params) do
+    case %Content{} |> Content.changeset(params) |> Repo.insert do
+      {:ok, content} -> content
+      {:error, changeset} -> changeset
+    end
   end
 
   defmodule Queries do
@@ -44,6 +56,30 @@ defmodule BroadcastLove.GraphQL.Content do
         args: %{},
         resolve: &Content.find/3
       }
+    end
+  end
+
+  defmodule Mutations do
+    alias BroadcastLove.GraphQL.Content
+    def create do
+      %{
+        name: "CreateContent",
+        input_fields: %{
+          description: %{type: %NonNull{ofType: %String{}}},
+          type: %{type: %NonNull{ofType: %String{}}},
+          data: %{type: %NonNull{ofType: %String{}}}
+        },
+        mutate_and_get_payload: fn(input, _info) ->
+          content = Content.create(input)
+          %{ id: content.id }
+        end,
+        output_fields: %{
+          content: %{
+            type: Content.type,
+            resolve: &Content.find/3
+          }
+        }
+      } |> Mutation.new
     end
   end
 end

@@ -11,8 +11,9 @@ config :broadcast_love, BroadcastLove.Endpoint,
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
-  watchers: [node: ["webpack.server.js"]]
-
+  watchers: [node: ["webpack.server.js"],
+             mix: ["eye_drops"]]
+  # watchers: [mix: ["eye_drops"]]
 
 # Watch static and templates for browser reloading.
 config :broadcast_love, BroadcastLove.Endpoint,
@@ -23,6 +24,16 @@ config :broadcast_love, BroadcastLove.Endpoint,
       ~r{web/views/.*(ex)$},
       ~r{web/templates/.*(eex)$}
     ]
+  ]
+
+config :eye_drops,
+  tasks: [
+    %{
+      id: :graphql_update_schema,
+      name: "Update GraphQL Schema",
+      cmd: "mix graphql.gen.schema",
+      paths: ["web/graphql/*"]
+    }
   ]
 
 # Do not include metadata nor timestamps in development logs

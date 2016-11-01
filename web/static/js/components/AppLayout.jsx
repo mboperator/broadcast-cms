@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { config } from 'rebass';
+import { Box } from 'react-layout-components';
 
 class Root extends React.Component {
   state = {
@@ -16,9 +17,9 @@ class Root extends React.Component {
 
   render() {
     return (
-      <div style={this.state.style}>
+      <Box column style={this.state.style}>
         {this.props.children}
-      </div>
+      </Box>
     );
   }
 

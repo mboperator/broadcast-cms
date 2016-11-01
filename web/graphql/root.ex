@@ -1,38 +1,54 @@
-defmodule BroadcastLove.GraphQL.Root do
+defmodule BroadcastLove.GraphQL.Schema.Root do
   alias GraphQL.Schema
-  alias GraphQL.Type.{ObjectType, List, ID}
+  alias GraphQL.Type.ObjectType
+  alias GraphQL.Relay.Node
   alias BroadcastLove.GraphQL.{Tag, Content}
 
-  defmodule Query do
-    def type do
-      %ObjectType{
-        name: "Root",
-        description: "All the queries available to the client",
-        fields: %{
-          content: %{
-            type: %List{ofType: Content},
-            args: %{
-              id: %{type: %ID{}},
-            },
-            description: "A piece of uploaded content",
-            resolve: &Content.find/3
-          },
-          tag: %{
-            type: %List{ofType: Tag},
-            args: %{
-              id: %{type: %ID{}}
-            },
-            description: "A tag for identifying content",
-            resolve: &Tag.find/3
-          }
-        }
+  def node_interface do
+    Node.define_interface(fn(obj) ->
+      case obj do
+        %{type: _type} ->
+          Content.type
+      end
+    end)
+  end
+
+  def node_field do
+    Node.define_field(node_interface, fn (_item, args, _ctx) ->
+      [type, id] = Node.from_global_id(args[:id])
+      case type do
+        "content" ->
+          Content.find(id)
+      end
+    end)
+  end
+
+  def query do
+    %ObjectType{
+      name: "Root",
+      description: "All the queries available to the client",
+      fields: %{
+        node: node_field,
+        content: Content.Queries.find
       }
-    end
+    }
+  end
+
+  def mutation do
+    %ObjectType{
+      name: "Mutation",
+      description: "Root object for performing data mutations",
+      fields: %{
+        createContent: Content.Mutations.create,
+        destroyContent: Content.Mutations.destroy,
+      }
+    }
   end
 
   def schema do
     %Schema{
-      query: Query
+      query: query,
+      mutation: mutation
     }
   end
 end

@@ -37,6 +37,8 @@ defmodule BroadcastLove.Mixfile do
      {:phoenix_html, "~> 2.6"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:plug_graphql, "~> 0.3.1"},
+     {:graphql_relay, "~> 0.5"},
+     {:eye_drops, "~> 1.2"},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"}]
   end

@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
-import { Text, Card, CardImage } from 'rebass';
+import { Text, Card, CardImage, Button } from 'rebass';
 import { setPropTypes } from 'recompose';
 
-const ContentFeed = ({ content = [] }) => (
+const ContentFeed = ({ content, destroyContent }) => (
   <div>
     {content.map(({
       description,
@@ -12,8 +12,14 @@ const ContentFeed = ({ content = [] }) => (
       <Card key={id}>
         <CardImage src={data} />
         <Text>
+          {id}
+        </Text>
+        <Text>
           {description}
         </Text>
+        <Button onClick={() => destroyContent(id)}>
+          Delete
+        </Button>
       </Card>
     ))}
   </div>

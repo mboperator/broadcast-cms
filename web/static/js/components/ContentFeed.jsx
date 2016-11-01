@@ -12,6 +12,9 @@ const ContentFeed = ({ content, destroyContent }) => (
       <Card key={id}>
         <CardImage src={data} />
         <Text>
+          {id}
+        </Text>
+        <Text>
           {description}
         </Text>
         <Button onClick={() => destroyContent(id)}>

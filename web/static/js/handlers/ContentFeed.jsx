@@ -4,7 +4,7 @@ import { compose } from 'recompose';
 import ContentFeed from '../components/ContentFeed';
 
 const withContents = graphql(
-  gql`query q {
+  gql`query Content {
   	content: content {
   	  id,
       description,
@@ -19,7 +19,7 @@ const withContents = graphql(
 );
 
 const destroyContent = graphql(
-  gql`mutation m($id: String!) {
+  gql`mutation DestroyContent($id: String!) {
     destroyContent(input: {id: $id}) {
       deleted
       id
@@ -28,7 +28,26 @@ const destroyContent = graphql(
   `,
   {
     props: ({ mutate }) => ({
-      destroyContent: id => mutate({ variables: {id} }),
+      destroyContent: id => mutate({
+        variables: {id},
+        optimisticResponse: {
+          __typename: 'Mutation',
+          destroyContent: {
+            __typename: 'Content',
+            id: id,
+            deleted: true,
+          },
+        },
+        updateQueries: {
+          Content: (prev, { mutationResult: { data } }) => {
+            const newState = ({
+              content: prev.content
+                .filter(c => c.id !== data.destroyContent.id),
+            });
+            return newState;
+          },
+        },
+      }),
     }),
   },
 );

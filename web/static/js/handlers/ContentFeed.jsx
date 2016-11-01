@@ -1,11 +1,10 @@
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import { compose } from 'recompose';
 import ContentFeed from '../components/ContentFeed';
 
 const withContents = graphql(
-  gql`{
-  	content {
+  gql`query q {
+  	content: content {
   	  id,
       description,
       type,
@@ -18,24 +17,5 @@ const withContents = graphql(
   }
 );
 
-const createContent = graphql(
-  gql`
-    mutation createContent($content: content) {
-      createContent(content: $content) {
-        data
-        description
-        type
-      }
-    }
-  `,
-  {
-    props: ({ mutate }) => ({
-      createContent: content => mutate({ variables: content }),
-    }),
-  }
-);
 
-export default compose(
-  withContents,
-  createContent,
-)(ContentFeed);
+export default withContents(ContentFeed);

@@ -15,7 +15,7 @@ import {
   PanelFooter,
 } from 'rebass';
 
-const NewContentModal = ({ actions, modal = {} }) => (
+const NewContentModal = ({ actions, modal = {}, createContent }) => (
   <div>
     <ButtonCircle onClick={actions.open}>
       Add
@@ -33,20 +33,37 @@ const NewContentModal = ({ actions, modal = {} }) => (
             label="Description"
             name="description_input"
             placeholder="Enter a description..."
+            onChange={({ target: { value } }) => {
+              actions.updateDescription(value);
+            }}
+            value={modal.description}
             rounded
             type="text"
           />
           <Textarea
             label="Data"
             name="data_input"
-            placeholder="Enter a description..."
+            placeholder="Enter data..."
+            onChange={({ target: { value } }) => {
+              actions.updateData(value);
+            }}
+            rounded
+            type="text"
+          />
+          <Input
+            label="Type"
+            name="type_input"
+            placeholder="image, video, not"
+            onChange={({ target: { value } }) => {
+              actions.updateType(value);
+            }}
             rounded
             type="text"
           />
         </div>
         <PanelFooter>
           <Box flex={2}>
-            <Button>
+            <Button onClick={() => createContent({ ...modal })}>
               Submit
             </Button>
           </Box>
@@ -61,17 +78,20 @@ const NewContentModal = ({ actions, modal = {} }) => (
   </div>
 );
 
-const module = createModule({
+const modalModule = createModule({
   name: 'modal',
-  initialState: { open: false },
+  initialState: { open: false, description: '', data: '', type: '' },
   transformations: {
     open: state => ({ ... state, open: true }),
-    close: state => ({ ... state, open: false }),
+    updateData: (state, { payload: data }) => ({ ... state, data }),
+    updateDescription: (state, { payload: description }) => ({ ... state, description }),
+    updateType: (state, { payload: type }) => ({ ... state, type }),
+    close: () => ({data: '', description: '', type: 'image', open: false}),
   },
 });
 
 export default compose(
-  localModule(module),
+  localModule(modalModule),
   setPropTypes({
     actions: PropTypes.shape({
       open: PropTypes.func.isRequired,

@@ -7,7 +7,7 @@ import store from '../utils/getStore';
 
 import AppLayout from '../components/AppLayout';
 import ContentFeed from './ContentFeed';
-import NewContentModal from '../components/NewContentModal';
+import NewContentModal from './NewContentModal';
 
 import { Box } from 'react-layout-components';
 

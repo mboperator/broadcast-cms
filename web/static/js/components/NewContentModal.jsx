@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 import { createModule } from 'redux-modules';
 import localModule from '../utils/localModule';
 import { compose, setPropTypes } from 'recompose';
-import { Box, Container } from 'react-layout-components';
-import ReactMarkdown from 'react-markdown';
+import { Box } from 'react-layout-components';
+import MarkdownInput from './MarkdownInput';
 
 import {
   Button,
@@ -12,7 +12,6 @@ import {
   PanelHeader,
   Overlay,
   Input,
-  Textarea,
   PanelFooter,
 } from 'rebass';
 
@@ -41,24 +40,10 @@ const NewContentModal = ({ actions, modal = {}, createContent }) => (
             rounded
             type="text"
           />
-          <Box width={400}>
-            <Container flex={2} paddingRight={5}>
-              <Textarea
-                label="Data"
-                name="data_input"
-                placeholder="Enter data..."
-                onChange={({ target: { value } }) => {
-                  actions.updateData(value);
-                }}
-                value={modal.data}
-                rounded
-                type="text"
-              />
-            </Container>
-            <Container flex={2} paddingLeft={5}>
-              <ReactMarkdown source={modal.data} />
-            </Container>
-          </Box>
+          <MarkdownInput
+            value={modal.data}
+            onChange={actions.updateData}
+          />
         </div>
         <PanelFooter>
           <Box flex={2}>

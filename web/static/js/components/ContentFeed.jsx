@@ -1,22 +1,32 @@
 import React, { PropTypes } from 'react';
 import { Text, Card, CardImage, Button } from 'rebass';
 import { setPropTypes } from 'recompose';
-
+import ReactMarkdown from 'react-markdown';
 const ContentFeed = ({ content, destroyContent }) => (
   <div>
     {content.map(({
       description,
       data,
+      type,
       id,
     }) => (
       <Card key={id}>
-        <CardImage src={data} />
-        <Text>
-          {id}
-        </Text>
-        <Text>
-          {description}
-        </Text>
+        {type === 'image' &&
+          [
+            <CardImage src={data} />,
+            <Text>
+              {description}
+            </Text>,
+          ]
+        }
+        {type === 'text' &&
+          [
+            <ReactMarkdown source={data} />,
+            <Text>
+              {description}
+            </Text>,
+          ]
+        }
         <Button onClick={() => destroyContent(id)}>
           Delete
         </Button>

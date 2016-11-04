@@ -2,7 +2,8 @@ import React, { PropTypes } from 'react';
 import { createModule } from 'redux-modules';
 import localModule from '../utils/localModule';
 import { compose, setPropTypes } from 'recompose';
-import { Box } from 'react-layout-components';
+import { Box, Container } from 'react-layout-components';
+import ReactMarkdown from 'react-markdown';
 
 import {
   Button,
@@ -40,26 +41,24 @@ const NewContentModal = ({ actions, modal = {}, createContent }) => (
             rounded
             type="text"
           />
-          <Textarea
-            label="Data"
-            name="data_input"
-            placeholder="Enter data..."
-            onChange={({ target: { value } }) => {
-              actions.updateData(value);
-            }}
-            rounded
-            type="text"
-          />
-          <Input
-            label="Type"
-            name="type_input"
-            placeholder="image, video, not"
-            onChange={({ target: { value } }) => {
-              actions.updateType(value);
-            }}
-            rounded
-            type="text"
-          />
+          <Box width={400}>
+            <Container flex={2} paddingRight={5}>
+              <Textarea
+                label="Data"
+                name="data_input"
+                placeholder="Enter data..."
+                onChange={({ target: { value } }) => {
+                  actions.updateData(value);
+                }}
+                value={modal.data}
+                rounded
+                type="text"
+              />
+            </Container>
+            <Container flex={2} paddingLeft={5}>
+              <ReactMarkdown source={modal.data} />
+            </Container>
+          </Box>
         </div>
         <PanelFooter>
           <Box flex={2}>
@@ -80,7 +79,13 @@ const NewContentModal = ({ actions, modal = {}, createContent }) => (
 
 const modalModule = createModule({
   name: 'modal',
-  initialState: { open: false, description: '', data: '', type: '' },
+  initialState: {
+    open: false,
+    description: '',
+    data: '',
+    type: 'text',
+    activePane: 'text',
+  },
   transformations: {
     open: state => ({ ... state, open: true }),
     updateData: (state, { payload: data }) => ({ ... state, data }),

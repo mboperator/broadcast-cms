@@ -1,3 +1,4 @@
+.yarnclean
 # App artifacts
 /_build
 /db

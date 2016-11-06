@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-
+const path = require('path');
 const HOST = 'localhost';
 const PORT = '4001';
 
@@ -25,7 +25,7 @@ const devConfig = {
       {
         test: [/\.js$/, /\.jsx$/],
         loaders: ['babel'],
-        exclude: /node_modules/,
+        exclude: /(node_modules|forge\.bundle\.js)/,
       },
       {
         test: [/\.sass$/, /\.scss$/],
@@ -40,6 +40,17 @@ const devConfig = {
         loader: 'json',
       },
     ],
+    postLoaders: [
+      {
+        include: [
+          path.resolve(__dirname, 'node_modules/ipfs-api'),
+          path.resolve(__dirname, 'node_modules/fs.realpath'),
+          path.resolve(__dirname, 'node_modules/libp2p-crypto'),
+          path.resolve(__dirname, 'node_modules/ipld-dag-pb'),
+        ],
+        loader: 'transform/cacheable?brfs',
+      },
+    ],
   },
 
   plugins: [
@@ -49,6 +60,9 @@ const devConfig = {
 
   resolve: {
     extensions: ['', '.js', '.jsx', '.json', '.css', '.sass', '.scss'],
+    alias: {
+      'node-forge': path.resolve(__dirname, 'web/static/js/utils/forge.bundle.js'),
+    },
   },
 
   node: {

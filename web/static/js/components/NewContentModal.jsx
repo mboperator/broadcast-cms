@@ -3,6 +3,7 @@ import { createModule } from 'redux-modules';
 import localModule from '../utils/localModule';
 import { compose, setPropTypes } from 'recompose';
 import { Box } from 'react-layout-components';
+import MarkdownInput from './MarkdownInput';
 
 import {
   Button,
@@ -11,7 +12,6 @@ import {
   PanelHeader,
   Overlay,
   Input,
-  Textarea,
   PanelFooter,
 } from 'rebass';
 
@@ -40,25 +40,9 @@ const NewContentModal = ({ actions, modal = {}, createContent }) => (
             rounded
             type="text"
           />
-          <Textarea
-            label="Data"
-            name="data_input"
-            placeholder="Enter data..."
-            onChange={({ target: { value } }) => {
-              actions.updateData(value);
-            }}
-            rounded
-            type="text"
-          />
-          <Input
-            label="Type"
-            name="type_input"
-            placeholder="image, video, not"
-            onChange={({ target: { value } }) => {
-              actions.updateType(value);
-            }}
-            rounded
-            type="text"
+          <MarkdownInput
+            value={modal.data}
+            onChange={actions.updateData}
           />
         </div>
         <PanelFooter>
@@ -80,7 +64,13 @@ const NewContentModal = ({ actions, modal = {}, createContent }) => (
 
 const modalModule = createModule({
   name: 'modal',
-  initialState: { open: false, description: '', data: '', type: '' },
+  initialState: {
+    open: false,
+    description: '',
+    data: '',
+    type: 'text',
+    activePane: 'text',
+  },
   transformations: {
     open: state => ({ ... state, open: true }),
     updateData: (state, { payload: data }) => ({ ... state, data }),

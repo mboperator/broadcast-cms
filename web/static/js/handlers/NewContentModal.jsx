@@ -30,7 +30,7 @@ const createContent = graphql(
         updateQueries: {
           Content: (prev, { mutationResult: { data } }) => {
             const newState = ({
-              content: prev.content.concat(data.createContent.content)
+              content: prev.content.concat(data.createContent.content),
             });
             return newState;
           },

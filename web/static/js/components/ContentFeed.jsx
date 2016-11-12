@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
-import { Text, Card, CardImage, Button } from 'rebass';
 import { setPropTypes } from 'recompose';
-import ReactMarkdown from 'react-markdown';
 import { Box } from 'react-layout-components';
+import ImageContent from './ImageContent';
+import TextContent from './TextContent';
+
 const ContentFeed = ({ content, destroyContent }) => (
   <Box row>
     {content.map(({
@@ -10,29 +11,26 @@ const ContentFeed = ({ content, destroyContent }) => (
       data,
       type,
       id,
-    }) => (
-      <Card key={id} style={{margin: '10px', maxWidth: '300px', maxHeight: '300px'}}>
-        {type === 'image' &&
-          [
-            <CardImage src={data} />,
-            <Text>
-              {description}
-            </Text>,
-          ]
-        }
-        {type === 'text' &&
-          [
-            <ReactMarkdown source={data} />,
-            <Text>
-              {description}
-            </Text>,
-          ]
-        }
-        <Button onClick={() => destroyContent(id)}>
-          Delete
-        </Button>
-      </Card>
-    ))}
+    }) => {
+      if (type === 'image') {
+        return (
+          <ImageContent
+            key={id}
+            description={description}
+            data={data}
+            onDelete={() => destroyContent(id)}
+          />
+        );
+      }
+      return (
+        <TextContent
+          key={id}
+          description={description}
+          data={data}
+          onDelete={() => destroyContent(id)}
+        />
+      );
+    })}
   </Box>
 );
 

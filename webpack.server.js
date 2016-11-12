@@ -3,7 +3,7 @@ const WebpackDevServer = require('webpack-dev-server');
 const webpack = require('webpack');
 
 const HOST = 'localhost';
-const PORT = '4001';
+const PORT = '3001';
 
 const contentBase = `http://${HOST}:${PORT}`;
 const compiler = webpack(devConfig);

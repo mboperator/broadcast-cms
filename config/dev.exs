@@ -7,13 +7,13 @@ use Mix.Config
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
 config :broadcast_love, BroadcastLove.Endpoint,
-  http: [port: 4000],
+  http: [port: 3000],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
-  watchers: [node: ["webpack.server.js"],
-             mix: ["eye_drops"]]
-  # watchers: [mix: ["eye_drops"]]
+  # watchers: [node: ["webpack.server.js"],
+  #            mix: ["eye_drops"]]
+  watchers: [mix: ["eye_drops"]]
 
 # Watch static and templates for browser reloading.
 config :broadcast_love, BroadcastLove.Endpoint,

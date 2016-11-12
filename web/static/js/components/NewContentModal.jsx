@@ -110,8 +110,8 @@ const modalModule = createModule({
     open: false,
     description: '',
     data: '',
-    type: 'text',
-    activePane: 'text',
+    type: 'image',
+    activePane: 'image',
   },
   transformations: {
     open: state => ({ ... state, open: true }),

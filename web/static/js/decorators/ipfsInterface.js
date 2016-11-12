@@ -12,28 +12,39 @@ const ipfsInterface = Component => {
 
     constructor() {
       super();
-      this.adapter = IPFS();
+      this.adapter = IPFS({
+        host: 'localhost',
+        port: '5001',
+        protocol: 'http',
+      });
+
+      this.reader = new FileReader();
+      this.reader.onload = this.uploadToIPFS;
     }
 
-    handleUpload = file => {
+    uploadToIPFS = ({ srcElement: { result }}) => {
       this.setState({ loading: true });
+      const file = new Buffer(result);
 
-      this.adapter.add(new Buffer(file), (err, res) => {
+      this.adapter.add(file, (err, res) => {
         if (err || !res) {
           this.setState({ errors: err });
         }
 
-        res.forEach(uploaded => {
-          this.setState({
-            uploadedFiles: this.state.uploadedFiles.concat(uploaded),
-            loading: false,
-          });
+        this.setState({
+          uploadedFiles: res,
+          loading: false,
         });
       });
     }
 
+    handleUpload = file => {
+      this.reader.readAsDataURL(file);
+    }
+
     handleDownload = hash => {
-      this.adapter.cat(hash, (err, res) => {
+      this.setState({ loading: true });
+      this.adapter.cat(hash, {buffer: true}, (err, res) => {
         if (err || !res) {
           this.setState({ errors: err });
         }

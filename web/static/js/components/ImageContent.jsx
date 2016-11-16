@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import { Text, Card, CardImage, Button } from 'rebass';
-import ipfsInterface from '../decorators/ipfsInterface';
+import ipfsDownloader from '../decorators/ipfsDownloader';
 
 class ImageContent extends React.Component {
   constructor(props) {
@@ -40,4 +40,4 @@ class ImageContent extends React.Component {
 ImageContent.propTypes = {
 };
 
-export default ipfsInterface(ImageContent);
+export default ipfsDownloader(ImageContent);

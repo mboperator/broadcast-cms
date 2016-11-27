@@ -370,6 +370,11 @@
               "ofType": null,
               "name": "Content",
               "kind": "OBJECT"
+            },
+            {
+              "ofType": null,
+              "name": "Page",
+              "kind": "OBJECT"
             }
           ],
           "name": "Node",
@@ -396,6 +401,75 @@
           ],
           "enumValues": null,
           "description": "An object with an ID"
+        },
+        {
+          "possibleTypes": null,
+          "name": "Page",
+          "kind": "OBJECT",
+          "interfaces": [
+            {
+              "ofType": null,
+              "name": "Node",
+              "kind": "INTERFACE"
+            }
+          ],
+          "inputFields": null,
+          "fields": [
+            {
+              "type": {
+                "ofType": {
+                  "ofType": null,
+                  "name": "ID",
+                  "kind": "SCALAR"
+                },
+                "name": null,
+                "kind": "NON_NULL"
+              },
+              "name": "gid",
+              "isDeprecated": null,
+              "description": "The ID of an object",
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "ID",
+                "kind": "SCALAR"
+              },
+              "name": "id",
+              "isDeprecated": null,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "String",
+                "kind": "SCALAR"
+              },
+              "name": "subtitle",
+              "isDeprecated": null,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "String",
+                "kind": "SCALAR"
+              },
+              "name": "title",
+              "isDeprecated": null,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
+            }
+          ],
+          "enumValues": null,
+          "description": "a page object"
         },
         {
           "possibleTypes": null,
@@ -446,6 +520,22 @@
                   "defaultValue": null
                 }
               ]
+            },
+            {
+              "type": {
+                "ofType": {
+                  "ofType": null,
+                  "name": "Page",
+                  "kind": "OBJECT"
+                },
+                "name": null,
+                "kind": "LIST"
+              },
+              "name": "page",
+              "isDeprecated": null,
+              "description": null,
+              "deprecationReason": null,
+              "args": []
             }
           ],
           "enumValues": null,

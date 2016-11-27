@@ -2,7 +2,7 @@ defmodule BroadcastLove.GraphQL.Schema.Root do
   alias GraphQL.Schema
   alias GraphQL.Type.ObjectType
   alias GraphQL.Relay.Node
-  alias BroadcastLove.GraphQL.{Tag, Content}
+  alias BroadcastLove.GraphQL.{Content, Page}
 
   def node_interface do
     Node.define_interface(fn(obj) ->
@@ -19,6 +19,8 @@ defmodule BroadcastLove.GraphQL.Schema.Root do
       case type do
         "content" ->
           Content.find(id)
+        "page" ->
+          Page.find(id)
       end
     end)
   end
@@ -29,7 +31,8 @@ defmodule BroadcastLove.GraphQL.Schema.Root do
       description: "All the queries available to the client",
       fields: %{
         node: node_field,
-        content: Content.Queries.find
+        content: Content.Queries.find,
+        page: Page.Queries.find
       }
     }
   end
@@ -41,6 +44,8 @@ defmodule BroadcastLove.GraphQL.Schema.Root do
       fields: %{
         createContent: Content.Mutations.create,
         destroyContent: Content.Mutations.destroy,
+        # createPage: Page.Mutations.create,
+        # destroyPage: Page.Mutations.destroy,
       }
     }
   end

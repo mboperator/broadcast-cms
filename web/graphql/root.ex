@@ -44,7 +44,7 @@ defmodule BroadcastLove.GraphQL.Schema.Root do
       fields: %{
         createContent: Content.Mutations.create,
         destroyContent: Content.Mutations.destroy,
-        # createPage: Page.Mutations.create,
+        createPage: Page.Mutations.create,
         # destroyPage: Page.Mutations.destroy,
       }
     }

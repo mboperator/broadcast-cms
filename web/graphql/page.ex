@@ -1,5 +1,5 @@
 defmodule BroadcastLove.GraphQL.Page do
-  alias BroadcastLove.{Repo, Page}
+  alias BroadcastLove.{Repo, Page, ContentPages}
   alias GraphQL.Relay.{Connection, Node, Mutation}
   alias GraphQL.Type.{ObjectType, String, List, NonNull, Boolean, ID}
 
@@ -23,6 +23,14 @@ defmodule BroadcastLove.GraphQL.Page do
         id: %{type: %ID{}},
         title: %{type: %String{}},
         subtitle: %{type: %String{}},
+        contents: %{
+          type: BroadcastLove.GraphQL.Content.type,
+          description: "The content associated to this page",
+          args: Connection.args,
+          resolve: fn(page, _args, _ctx) ->
+            Repo.get_by(ContentPages, %{content_id: page.id})
+          end
+        }
       },
       interfaces: [BroadcastLove.GraphQL.Schema.Root.node_interface]
     }
@@ -79,7 +87,7 @@ defmodule BroadcastLove.GraphQL.Page do
           %{ id: content.id }
         end,
         output_fields: %{
-          content: %{
+          page: %{
             type: Page.type,
             resolve: &Page.find/3
           }

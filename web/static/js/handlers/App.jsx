@@ -16,23 +16,31 @@ export default class App extends Component {
     return (
       <ApolloProvider store={store()} client={client()}>
         <AppLayout>
-          <Box
-            justifyContent="space-between"
+          <Box justifyContent='center'
             style={{
-              position: 'fixed',
-              left: 0,
-              top: 0,
-              right: 0,
-              backgroundColor: 'white',
-              boxShadow: '0px 3px 17px 0px rgba(50, 50, 50, 0.46)',
+              paddingTop: '20px',
+              height: '96vh',
+              overflow: 'hidden',
             }}
           >
-            <div style={{ padding: '5px', size: '25px' }}>♥</div>
-            <Box>
-              <NewContentModal />
+            <Box
+              justifyContent="space-between"
+              style={{
+                position: 'fixed',
+                left: 0,
+                top: 0,
+                right: 0,
+                backgroundColor: 'white',
+                boxShadow: '0px 3px 17px 0px rgba(50, 50, 50, 0.46)',
+              }}
+            >
+              <div style={{ padding: '5px', size: '25px' }}>♥</div>
+              <Box>
+                <NewContentModal />
+              </Box>
             </Box>
+            <PageFeed />
           </Box>
-          <PageFeed />
         </AppLayout>
       </ApolloProvider>
     );

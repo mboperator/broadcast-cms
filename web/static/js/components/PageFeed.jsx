@@ -4,7 +4,11 @@ import { Box } from 'react-layout-components';
 import ContentFeed from './ContentFeed';
 
 const PageFeed = ({ pages = [], destroyPage }) => (
-  <Box column>
+  <Box
+    column
+    alignItems="center"
+    style={{ overflowY: 'scroll', width: '100%' }}
+    >
     {pages.map(({
       contents,
       subtitle,
@@ -14,19 +18,21 @@ const PageFeed = ({ pages = [], destroyPage }) => (
       <Box
         key={id}
         column
+        alignItems="center"
+        justifyContent="center"
         style={{
           border: '1px solid black',
           margin: '20px',
-          minWidth: '300px',
-          minHeight: '250px',
-          alignItems: 'center',
+          minWidth: '480px',
+          minHeight: '300px',
+          width: '800px',
+          height: '500px',
         }}
       >
         <Box column>
           <h2>{title}</h2>
           <p>{subtitle}</p>
         </Box>
-        <ContentFeed content={contents} />
       </Box>
     )}
   </Box>

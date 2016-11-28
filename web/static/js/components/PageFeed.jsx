@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 import { setPropTypes } from 'recompose';
 import { Box } from 'react-layout-components';
 import ContentFeed from './ContentFeed';
@@ -30,8 +31,10 @@ const PageFeed = ({ pages = [], destroyPage }) => (
         }}
       >
         <Box column>
-          <h2>{title}</h2>
-          <p>{subtitle}</p>
+          <Link to={`/pages/${id}`}>
+            <h2>{title}</h2>
+            <p>{subtitle}</p>
+          </Link>
         </Box>
       </Box>
     )}

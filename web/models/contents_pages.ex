@@ -11,7 +11,7 @@ defmodule BroadcastLove.ContentsPages do
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """
-  def changeset(struct, params \\ %{}) do
+  def changeset(struct \\ %BroadcastLove.ContentsPages{}, params \\ %{}) do
     struct
     |> cast(params, [])
     |> validate_required([])

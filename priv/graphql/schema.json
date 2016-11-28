@@ -221,6 +221,20 @@
             },
             {
               "type": {
+                "ofType": {
+                  "ofType": null,
+                  "name": "ID",
+                  "kind": "SCALAR"
+                },
+                "name": null,
+                "kind": "LIST"
+              },
+              "name": "contents",
+              "description": null,
+              "defaultValue": null
+            },
+            {
+              "type": {
                 "ofType": null,
                 "name": "String",
                 "kind": "SCALAR"
@@ -659,9 +673,13 @@
           "fields": [
             {
               "type": {
-                "ofType": null,
-                "name": "Content",
-                "kind": "OBJECT"
+                "ofType": {
+                  "ofType": null,
+                  "name": "Content",
+                  "kind": "OBJECT"
+                },
+                "name": null,
+                "kind": "LIST"
               },
               "name": "contents",
               "isDeprecated": null,

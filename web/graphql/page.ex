@@ -1,7 +1,8 @@
 defmodule BroadcastLove.GraphQL.Page do
-  alias BroadcastLove.{Repo, Page, ContentPages}
+  alias BroadcastLove.{Repo, Page, ContentsPages, Services}
   alias GraphQL.Relay.{Connection, Node, Mutation}
   alias GraphQL.Type.{ObjectType, String, List, NonNull, Boolean, ID}
+  import Ecto.Query, only: [from: 2]
 
   def connection do
     %{
@@ -24,11 +25,11 @@ defmodule BroadcastLove.GraphQL.Page do
         title: %{type: %String{}},
         subtitle: %{type: %String{}},
         contents: %{
-          type: BroadcastLove.GraphQL.Content.type,
+          type: %List{ofType: BroadcastLove.GraphQL.Content.type},
           description: "The content associated to this page",
           args: Connection.args,
           resolve: fn(page, _args, _ctx) ->
-            Repo.get_by(ContentPages, %{content_id: page.id})
+            page.contents
           end
         }
       },
@@ -45,13 +46,20 @@ defmodule BroadcastLove.GraphQL.Page do
   end
 
   def find(_, _, _) do
-    Repo.all(Page)
+    query = from p in Page,
+            preload: [:contents]
+    Repo.all(query)
   end
 
-  def create(params) do
-    case %Page{} |> Page.changeset(params) |> Repo.insert do
+  def create(%{title: title, subtitle: subtitle, contents: contents}) do
+    result = %Page{}
+      |> Page.changeset(%{title: title, subtitle: subtitle})
+      |> Repo.insert
+      |> Services.Page.add_content(contents)
+
+    case result do
       {:ok, page} -> page
-      {:error, changeset} -> changeset
+      {:error, changesets} -> changesets
     end
   end
 
@@ -81,6 +89,7 @@ defmodule BroadcastLove.GraphQL.Page do
         input_fields: %{
           title: %{type: %NonNull{ofType: %String{}}},
           subtitle: %{type: %String{}},
+          contents: %{type: %List{ofType: %ID{}}}
         },
         mutate_and_get_payload: fn(input, _info) ->
           content = Page.create(input)

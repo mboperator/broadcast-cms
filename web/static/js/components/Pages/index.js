@@ -1,8 +1,11 @@
 import { compose } from 'recompose';
-import Component from './Component';
+import StatelessList from './List';
+import StatelessView from './View';
 import * as Page from '../../graphql/Page';
 
-export default compose(
+export const List = compose(
   Page.queries.findAll,
   Page.mutations.destroyPage
-)(Component);
+)(StatelessList);
+
+export const View = StatelessView;

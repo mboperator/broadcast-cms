@@ -6,43 +6,15 @@ import client from './utils/getClient';
 import store from './utils/getStore';
 
 import AppLayout from './components/AppLayout';
-import Pages from './components/Pages';
-import ContentFeed from './components/ContentFeed';
-import NewContentModal from './components/CreateContent';
-
-import { Box } from 'react-layout-components';
+import * as Pages from './components/Pages';
 
 export const App = () => (
   <ApolloProvider store={store()} client={client()}>
     <AppLayout>
-      <Box justifyContent='center'
-        style={{
-          paddingTop: '20px',
-          height: '96vh',
-          overflow: 'hidden',
-        }}
-      >
-        <Box
-          justifyContent="space-between"
-          style={{
-            position: 'fixed',
-            left: 0,
-            top: 0,
-            right: 0,
-            backgroundColor: 'white',
-            boxShadow: '0px 3px 17px 0px rgba(50, 50, 50, 0.46)',
-          }}  
-        >
-          <div style={{ padding: '5px', size: '25px' }}>♥</div>
-          <Box>
-            <NewContentModal />
-          </Box>
-        </Box>
-        <Router history={hashHistory}>
-          <Route path="/" component={Pages} />
-          <Route path="/pages/:page_id" component={ContentFeed} />
-        </Router>
-      </Box>
+      <Router history={hashHistory}>
+        <Route path="/" component={Pages.List} />
+        <Route path="/pages/:page_id" component={Pages.View} />
+      </Router>
     </AppLayout>
   </ApolloProvider>
 );

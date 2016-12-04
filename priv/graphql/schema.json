@@ -851,13 +851,9 @@
               "args": [
                 {
                   "type": {
-                    "ofType": {
-                      "ofType": null,
-                      "name": "ID",
-                      "kind": "SCALAR"
-                    },
-                    "name": null,
-                    "kind": "NON_NULL"
+                    "ofType": null,
+                    "name": "ID",
+                    "kind": "SCALAR"
                   },
                   "name": "id",
                   "description": null,

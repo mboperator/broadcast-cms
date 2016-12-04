@@ -37,6 +37,6 @@ export const findOne = graphql(
   }`,
   {
     options: ({ pageId }) => ({ variables: { id: pageId }}),
-    props: ({ data: { page = {} } }) => ({ page }),
+    props: ({ data: { page = [] } }) => ({ page: page[0] }),
   }
 );

@@ -80,7 +80,7 @@ defmodule BroadcastLove.GraphQL.Page do
       %{
         type: %List{ofType: Page.type},
         args: %{
-          id: %{type: %NonNull{ofType: %ID{}}}
+          id: %{type: %ID{}}
         },
         resolve: &Page.find/3
       }

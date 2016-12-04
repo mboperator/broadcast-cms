@@ -7,7 +7,7 @@ export const findAll = graphql(
   	  id,
       title,
       subtitle,
-      contents{
+      contents {
         id,
         type,
         data,
@@ -18,5 +18,25 @@ export const findAll = graphql(
   `,
   {
     props: ({ data: { pages = [] } }) => ({ pages }),
+  }
+);
+
+export const findOne = graphql(
+  gql`query page($id: ID!) {
+    page(id: $id) {
+      id,
+      title,
+      subtitle,
+      contents {
+        id,
+        type,
+        data,
+        description
+      }
+    }
+  }`,
+  {
+    options: ({ pageId }) => ({ variables: { id: pageId }}),
+    props: ({ data: { page = {} } }) => ({ page }),
   }
 );

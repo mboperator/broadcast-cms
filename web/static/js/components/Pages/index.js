@@ -1,3 +1,4 @@
+import React from 'react';
 import { compose } from 'recompose';
 import StatelessList from './List';
 import StatelessView from './View';
@@ -8,4 +9,9 @@ export const List = compose(
   Page.mutations.destroyPage
 )(StatelessList);
 
-export const View = StatelessView;
+export const View = compose(
+  Component => ({params, ...props}) => (
+    <Component pageId={params.pageId} {...props} />
+  ),
+  Page.queries.findOne
+)(StatelessView);

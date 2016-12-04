@@ -13,7 +13,7 @@ export const App = () => (
     <AppLayout>
       <Router history={hashHistory}>
         <Route path="/" component={Pages.List} />
-        <Route path="/pages/:page_id" component={Pages.View} />
+        <Route path="/pages/:pageId" component={Pages.View} />
       </Router>
     </AppLayout>
   </ApolloProvider>

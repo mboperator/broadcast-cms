@@ -38,14 +38,19 @@ defmodule BroadcastLove.GraphQL.Page do
   end
 
   def find(id) do
-    Repo.get(Page, id)
+    IO.puts("FIND ONE")
+    query = from p in Page,
+            where: p.id == ^id,
+            preload: [:contents]
+    Repo.all(query)
   end
 
-  def find(%{id: id}, _, _) do
+  def find(_, %{id: id}, _) do
     find(id)
   end
 
   def find(_, _, _) do
+    IO.puts("FIND ALL")
     query = from p in Page,
             preload: [:contents]
     Repo.all(query)
@@ -74,7 +79,9 @@ defmodule BroadcastLove.GraphQL.Page do
     def find do
       %{
         type: %List{ofType: Page.type},
-        args: %{},
+        args: %{
+          id: %{type: %NonNull{ofType: %ID{}}}
+        },
         resolve: &Page.find/3
       }
     end

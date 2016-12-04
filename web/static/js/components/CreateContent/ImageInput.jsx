@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Box } from 'react-layout-components';
 import Dropzone from 'react-dropzone';
-import ipfsUploader from '../decorators/ipfsUploader';
+import ipfsUploader from '../../decorators/ipfsUploader';
 
 class ImageInput extends React.Component {
   static propTypes = {

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { createModule } from 'redux-modules';
-import localModule from '../utils/localModule';
+import localModule from '../../utils/localModule';
 import { compose, setPropTypes } from 'recompose';
 import { Box } from 'react-layout-components';
 import MarkdownInput from './MarkdownInput';

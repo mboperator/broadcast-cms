@@ -9,7 +9,7 @@ const devConfig = {
     app: [
       `webpack-dev-server/client?http://${HOST}:${PORT}`,
       'webpack/hot/dev-server',
-      './web/static/js/app',
+      './web/static/js/index',
     ],
   },
 

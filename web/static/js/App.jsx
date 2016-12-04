@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import { Router, Route, hashHistory } from 'react-router';
 
-import client from '../utils/getClient';
-import store from '../utils/getStore';
+import client from './utils/getClient';
+import store from './utils/getStore';
 
-import AppLayout from '../components/AppLayout';
-import PageFeed from './PageFeed';
-import ContentFeed from './ContentFeed';
-import NewContentModal from './NewContentModal';
+import AppLayout from './components/AppLayout';
+import PageFeed from './components/PageFeed';
+import ContentFeed from './components/ContentFeed';
+import NewContentModal from './components/CreateContent';
 
 import { Box } from 'react-layout-components';
 
@@ -31,7 +31,7 @@ export const App = () => (
             right: 0,
             backgroundColor: 'white',
             boxShadow: '0px 3px 17px 0px rgba(50, 50, 50, 0.46)',
-          }}
+          }}  
         >
           <div style={{ padding: '5px', size: '25px' }}>♥</div>
           <Box>

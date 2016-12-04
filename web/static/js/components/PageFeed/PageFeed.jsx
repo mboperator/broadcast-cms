@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { setPropTypes } from 'recompose';
 import { Box } from 'react-layout-components';
-import ImageContent from './ImageContent';
+import ImageContent from '../ImageContent';
 
 const getHeaderImage = contents =>
   contents.find(obj => obj.type === 'image');

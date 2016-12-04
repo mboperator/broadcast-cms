@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
-import NewContentModal from '../components/NewContentModal';
+import NewContentModal from './NewContentModal';
 
 const createContent = graphql(
   gql`

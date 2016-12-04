@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { setPropTypes } from 'recompose';
 import { Box } from 'react-layout-components';
-import ImageContent from './ImageContent';
+import ImageContent from '../ImageContent';
 import TextContent from './TextContent';
 
 const ContentFeed = ({ content, destroyContent }) => (

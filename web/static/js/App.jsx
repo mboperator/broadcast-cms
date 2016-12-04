@@ -5,7 +5,7 @@ import { Router, Route, hashHistory } from 'react-router';
 import client from './utils/getClient';
 import store from './utils/getStore';
 
-import AppLayout from './components/AppLayout';
+import AppLayout from './components/App';
 import * as Pages from './components/Pages';
 
 export const App = () => (

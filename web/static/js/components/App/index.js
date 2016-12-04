@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 import { config } from 'rebass';
 import { Box } from 'react-layout-components';
 import Signup from './Signup';
@@ -40,8 +41,12 @@ class Root extends React.Component {
           >
             <div style={{ padding: '5px', size: '25px' }}>♥</div>
             <Box>
-              <Login />
-              <Signup />
+              <Link to="/login">
+                Login
+              </Link>
+              <Link to="/signup">
+                Signup
+              </Link>
             </Box>
           </Box>
           {this.props.children}

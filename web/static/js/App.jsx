@@ -6,7 +6,7 @@ import client from './utils/getClient';
 import store from './utils/getStore';
 
 import AppLayout from './components/AppLayout';
-import PageFeed from './components/PageFeed';
+import Pages from './components/Pages';
 import ContentFeed from './components/ContentFeed';
 import NewContentModal from './components/CreateContent';
 
@@ -39,7 +39,7 @@ export const App = () => (
           </Box>
         </Box>
         <Router history={hashHistory}>
-          <Route path="/" component={PageFeed} />
+          <Route path="/" component={Pages} />
           <Route path="/pages/:page_id" component={ContentFeed} />
         </Router>
       </Box>

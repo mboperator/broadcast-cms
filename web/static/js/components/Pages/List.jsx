@@ -34,9 +34,8 @@ const PageFeed = ({ pages = [], destroyPage }) => (
         }}
       >
         <Box column>
-          {getHeaderImage(contents) ?
+          {!!getHeaderImage(contents) &&
             <Content {...getHeaderImage(contents)} />
-            : null
           }
           <Link to={`/pages/${id}`}>
             <h2>{title}</h2>

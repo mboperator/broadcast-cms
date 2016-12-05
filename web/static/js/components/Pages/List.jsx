@@ -2,18 +2,10 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { setPropTypes } from 'recompose';
 import { Box } from 'react-layout-components';
-import ImageContent from '../ImageContent';
+import Content from '../Content';
 
 const getHeaderImage = contents =>
   contents.find(obj => obj.type === 'image');
-
-const renderImage = ({ id, description, data }) => (
-  <ImageContent
-    key={id}
-    description={description}
-    data={data}
-  />
-);
 
 const PageFeed = ({ pages = [], destroyPage }) => (
   <Box
@@ -43,7 +35,7 @@ const PageFeed = ({ pages = [], destroyPage }) => (
       >
         <Box column>
           {getHeaderImage(contents) ?
-            renderImage(getHeaderImage(contents))
+            <Content {...getHeaderImage(contents)} />
             : null
           }
           <Link to={`/pages/${id}`}>

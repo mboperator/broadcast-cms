@@ -1,8 +1,17 @@
-import { compose } from 'recompose';
-import Component from './Component';
-import * as Content from '../../graphql/Content';
+import React from 'react';
+import Image from './Image';
+import Text from './Text';
 
-export default compose(
-  Content.queries.findAll,
-  Content.mutations.destroyContent
-)(Component);
+const mapping = {
+  image: Image,
+  text: Text,
+};
+
+const Content = ({ type, ...content }) => {
+  const Component = mapping[type];
+  return (
+    <Component {...content} />
+  );
+};
+
+export default Content;
